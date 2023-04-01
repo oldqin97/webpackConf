@@ -1,1 +1,1 @@
-[img](./assets/panda_avatar.webp
+![test](./assets/panda_avatar.webp)
