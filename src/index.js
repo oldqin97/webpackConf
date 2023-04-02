@@ -1,5 +1,8 @@
+import { str, printf } from './ts/index';
+
 new Promise(resolve => {
   resolve(1);
 }).then(res => {
-  console.log(res);
+  printf(res);
+  printf(str);
 });

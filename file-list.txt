@@ -1,10 +1,15 @@
+
 .
 ├── README.md
 ├── assets
+├── babel.config.js
+├── dist
+│   └── main.js
 ├── file-list.txt
+├── package-lock.json
 ├── package.json
 ├── src
-│   └── index.js
+│   ├── index.js
+│   └── ts
+│       └── index.ts
 └── webpack.config.js
-
-28 directories, 41 files

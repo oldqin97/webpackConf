@@ -176,3 +176,69 @@ npx webpack
 - [`babel-preset-react`](https://link.juejin.cn/?target=https%3A%2F%2Fwww.npmjs.com%2Fpackage%2Fbabel-preset-react)：包含 React 常用插件的规则集，支持 `preset-flow`、`syntax-jsx`、`transform-react-jsx` 等；
 - [`@babel/preset-typescript`](https://link.juejin.cn/?target=https%3A%2F%2Fbabeljs.io%2Fdocs%2Fen%2Fbabel-preset-typescript)：用于转译 TypeScript 代码的规则集
 - [`@babel/preset-flow`](https://link.juejin.cn/?target=https%3A%2F%2Fbabeljs.io%2Fdocs%2Fen%2Fbabel-preset-flow%2F)：用于转译 [Flow](https://link.juejin.cn/?target=https%3A%2F%2Fflow.org%2Fen%2Fdocs%2Fgetting-started%2F) 代码的规则集
+
+##### 使用 Typescript
+
+1. 安装依赖
+
+```shell
+npm i -D @babel/preset-typescript
+```
+
+2. 配置 webpack
+
+```js
+  ┌─────────────────────────────────────────────────────┐
+  │ webpack.config.js                                   │
+  └─────────────────────────────────────────────────────┘
+module.exports = {
+  /** ... */
+  module: {
+    rules: [
+      {
+        test: /\.(js|ts)$/,
+        use: [
+          {
+            loader: 'babel-loader',
+          },
+        ],
+      },
+    ],
+  },
+  resolve: {
+    extension: ['.ts', '.js'],
+  },
+}
+```
+
+```js
+  ┌─────────────────────────────────────────────────────┐
+  │ babel.config.js                                     │
+  └─────────────────────────────────────────────────────┘
+module.exports = {
+  plugins: [],
+  presets: [['@babel/preset-env'], ['@babel/preset-typescript']],
+};
+```
+
+- 使用 `module.rules` 声明对所有符合 `/\.(js|ts)$/` 正则 —— 即 .ts 结尾的文件应用 babel-loader 加载器
+
+- 使用 `resolve.extensions` 声明自动解析 .ts 后缀文件，这意味着代码如 import "./a.ts" 可以忽略后缀声明，简化为 import "./a" 文件
+
+文件结构
+
+```shell
+.
+├── README.md
+├── assets
+├── babel.config.js
+├── dist
+│   └── main.js
+├── package-lock.json
+├── package.json
+├── src
+│   ├── index.js
+│   └── ts
+│       └── index.ts
+└── webpack.config.js
+```
