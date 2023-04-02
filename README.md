@@ -242,3 +242,68 @@ module.exports = {
 │       └── index.ts
 └── webpack.config.js
 ```
+
+##### 使用 ESLint
+
+ESLint 是一种扩展性极佳的 JavaScript 代码风格检查工具，它能够自动识别违反风格规则的代码并予以修复，例如对于下面的示例：
+
+1. 安装依赖
+
+```shell
+# 安装 eslint
+npm i -D eslint eslint-webpack-plugin
+
+# 简单起见，这里直接使用 standard 规范
+npm i -D eslint-config-standard eslint-plugin-promise eslint-plugin-import eslint-plugin-node
+```
+
+2. 在根目录添加 `.eslintrc` 配置文件
+
+```js
+  ┌─────────────────────────────────────────────────────┐
+  │ .eslintrc                                           │
+  └─────────────────────────────────────────────────────┘
+{
+  "extends": "standard"
+}
+```
+
+3. 配置 webpack
+
+```js
+const path = require('path');
+const ESLintPlugin = require('eslint-webpack-plugin');
+
+module.exports = {
+  mode: 'development',
+  entry: './src/index.js',
+  output: {
+    filename: '[name].js',
+    path: path.join(__dirname, './dist'),
+  },
+  /** module */
+
+  plugins: [new ESLintPlugin()],
+};
+```
+
+当我们配置这些的时候,可以看到 webpack 的配置文件也出现错误
+
+在根目录下新建 `.eslintignore` 文件
+
+```shell
+# dist目录下的所有文件
+dist/*
+# 忽略具体文件
+webpack.config.js
+babel.config.js
+
+# 除了src/index.js 文件
+!src/index.js
+```
+
+配置完毕后，就可以在 Webpack 编译过程实时看到代码风格错误提示：
+
+![eslint error](https://raw.githubusercontent.com/oldqin97/cloudImg/main/blogs/picture/20230402114241.png)
+
+![eslint error 显示](https://raw.githubusercontent.com/oldqin97/cloudImg/main/blogs/picture/20230402114321.png)

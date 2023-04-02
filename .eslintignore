@@ -1,0 +1,8 @@
+# dist目录下的所有文件
+dist/*
+# 忽略具体文件
+webpack.config.js
+babel.config.js
+
+# 除了src/index.js 文件
+!src/index.js
