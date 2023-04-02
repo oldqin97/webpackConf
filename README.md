@@ -143,6 +143,28 @@ module.exports = {
 - `test: /\.js$/`: 用于声明该规则的过滤条件, 只有路径名命中该正则的文件才会应用到这条规则 (表示对所有.js 后缀的文件生效)
 - `use`: 用于声明这条规则的 Loader 处理器序列, 所有命中该规则的文件都会被传入 Loader 序列做转译处理
 
+抽出配置到 配置文件中 `babel.config.js`
+
+```js
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        use: [
+          {
+            loader: 'babel-loader',
+            // options: {
+            //   presets: ['@babel/preset-env'],
+            // },
+          },
+        ],
+      },
+    ],
+  },
+};
+```
+
 3. 执行编译命令
 
 ```shell
