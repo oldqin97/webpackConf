@@ -1,3 +1,4 @@
 dist
 .gitignore
 document
+node_modules
