@@ -1,2 +1,1 @@
-const q = 123
-console.log(q)
+arr.map(item => item + 1)

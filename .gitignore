@@ -2,3 +2,4 @@ dist
 .gitignore
 document
 node_modules
+file-list.txt

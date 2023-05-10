@@ -6,4 +6,17 @@ module.exports = {
     filename: '[name].js',
     path: path.join(__dirname, './dist'),
   },
+
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        use: [
+          {
+            loader: 'babel-loader',
+          },
+        ],
+      },
+    ],
+  },
 }
